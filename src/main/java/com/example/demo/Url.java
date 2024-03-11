@@ -6,12 +6,16 @@ import lombok.Data;
 @Data
 @Table
 @Entity
-public class Urls {
+public class Url {
 
     @Id
     @GeneratedValue
     Long id;
 
-    String name;
+    String originName;
+
+    @Column(unique = true)
+    String shortName;
+
 
 }
