@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.*;
 public class UrlController {
     private final UrlService urlService;
 
-    @PostMapping
-    public String add(@RequestBody Url url){
-        return urlService.add(url).getShortName();
-    }
 
     @GetMapping("/{shortName}")
     public ResponseEntity<String> getOne(@PathVariable String shortName){
