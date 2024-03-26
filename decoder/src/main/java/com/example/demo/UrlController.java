@@ -7,12 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class UrlController {
     private final UrlService urlService;
 
-
-    @GetMapping("/{shortName}")
+    @GetMapping("/decode/{shortName}")
     public ResponseEntity<String> getOne(@PathVariable String shortName){
         val url = urlService.findByShortName(shortName);
         if(url.isPresent()){
@@ -20,5 +19,6 @@ public class UrlController {
         }
         return ResponseEntity.notFound().build();
     }
+
 
 }

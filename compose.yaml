@@ -1,16 +1,28 @@
 services:
-  demo1:
-    build: .
-    ports:
-      - "8081:8080"
-  demo2:
-    build: C:\Users\marzenusia\IdeaProjects\demo2\
-    ports:
-      - "8082:8081"
-  db:
+  db-service:
     image: mysql
     environment:
       - "MYSQL_ROOT_PASSWORD=abc3"
       - "MYSQL_DATABASE=db_example"
     ports:
       - "3307:3306"
+
+  encoder-service:
+    build: encoder
+    depends_on:
+      - db-service
+    ports:
+      - "8081:8080"
+    restart: on-failure:10
+
+  decoder-service:
+    build: decoder
+    depends_on:
+      - db-service
+    ports:
+      - "8082:8080"
+    restart: on-failure:10
+
+networks:
+  demo1-netowrk:
+    driver: overlay

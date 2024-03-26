@@ -1,0 +1,3 @@
+FROM openjdk:17
+COPY target/encoder-1.0-SNAPSHOT.jar /
+CMD ["java", "-jar", "encoder-1.0-SNAPSHOT.jar"]

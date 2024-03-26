@@ -1,0 +1,15 @@
+POST http://localhost:8081/api/encode
+Content-Type: application/json
+
+{
+  "originName": "test to be encoded"
+}
+
+###
+
+
+GET http://localhost:8082/api/decode/TOtJO
+Accept: application/json
+
+###
+
