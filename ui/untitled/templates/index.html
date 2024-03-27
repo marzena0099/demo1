@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encode-Decode</title>
+</head>
+
+
+<body>
+<label for="long_url_id">wprowadź url</label>
+<input type="text" id="long_url_id">
+<button onclick="encode()">ok</button>
+<div id="result_e_id">Skrócony url: </div>
+<label for="short_url_id">wprowadź url</label>
+<input type="text" id="short_url_id">
+<button onclick="decode()">ok</button>
+<div id="result_d_id">Przywrócony do pierwotnej wersji url: </div>
+</body>
+<script>
+    async function encode(){
+        const url = document.getElementById("long_url_id");
+       const response = await fetch('/encode', {
+        method: 'POST',
+            body: JSON.stringify(url),
+            headers: {'Content-Type': 'application/json'}
+    });
+       const result = (await response).text();
+       const res = document.getElementById("result_e_id");
+       res.innerHTML = await result;
+    }
+
+    async function decode(){
+        const url = document.getElementById("short_url_id").value;
+        const response =  await(await fetch(`/decode/${url}`)).text();
+        const res = document.getElementById("result_d_id");
+        res.innerHTML =response;
+
+    }
+</script>
+</html>

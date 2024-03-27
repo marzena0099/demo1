@@ -6,10 +6,19 @@ Content-Type: application/json
 }
 
 ###
-
+GET http://localhost:5000/decode/grrZd
+Accept: application/json
 
 GET http://localhost:8082/api/decode/TOtJO
 Accept: application/json
 
+GET http://localhost:8082/api/decode/cKvSp
+Accept: application/json
 ###
 
+POST http://localhost:5000/encode
+Content-Type: application/json
+
+{
+  "originName": "gfgfhggfghgfdghgfghgjghgdgfdf"
+}
