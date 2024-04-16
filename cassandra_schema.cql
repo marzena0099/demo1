@@ -1,0 +1,1 @@
+create keyspace abc with replication = {'class': 'SimpleStrategy', 'replication_factor': 1};

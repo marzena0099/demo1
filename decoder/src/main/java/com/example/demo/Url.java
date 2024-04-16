@@ -1,20 +1,20 @@
 package com.example.demo;
 
-import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
+
+import java.util.UUID;
 
 @Data
 @Table
-@Entity
 public class Url {
 
-    @Id
-    @GeneratedValue
-    Long id;
+    @PrimaryKey
+    private UUID id;
 
     String originName;
 
-    @Column(unique = true)
     String shortName;
 
 
