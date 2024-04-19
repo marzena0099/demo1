@@ -4,7 +4,7 @@ services:
     container_name: cassandra1
     hostname: cassandra1
     networks:
-      - demo1-netowrk
+      - demo1-network-2
     ports:
       - "9042:9042"
     healthcheck:
@@ -23,7 +23,7 @@ services:
     container_name: cassandra-load-keyspace
     image: cassandra:latest
     networks:
-      - demo1-netowrk
+      - demo1-network-2
     depends_on:
       cassandra1:
         condition: service_healthy
@@ -32,11 +32,12 @@ services:
     command: /bin/bash -c "echo loading cassandra keyspace && cqlsh cassandra1 -f /schema.cql"
 
   cassandra2:
+    restart: on-failure:5
     image: cassandra:latest
     container_name: cassandra2
     hostname: cassandra2
     networks:
-      - demo1-netowrk
+      - demo1-network-2
 #    ports:
 #      - "9043:9042"
     environment:
@@ -50,11 +51,12 @@ services:
       cassandra1:
         condition: service_started
   cassandra3:
+    restart: on-failure:5
     image: cassandra:latest
     container_name: cassandra3
     hostname: cassandra3
     networks:
-      - demo1-netowrk
+      - demo1-network-2
 #    ports:
 #      - "9044:9042"
     environment:
@@ -72,7 +74,7 @@ services:
     build: encoder
     restart: on-failure:10
     networks:
-      - demo1-netowrk
+      - demo1-network-2
     depends_on:
       cassandra1:
         condition: service_healthy
@@ -83,7 +85,7 @@ services:
     build: decoder
     restart: on-failure:10
     networks:
-      - demo1-netowrk
+      - demo1-network-2
     depends_on:
       cassandra1:
         condition: service_healthy
@@ -91,5 +93,6 @@ services:
       - "8082:8080"
 
 networks:
-  demo1-netowrk:
+  demo1-network-2:
     driver: overlay
+    attachable: true
