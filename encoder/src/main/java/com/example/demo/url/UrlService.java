@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.url;
 
 import com.datastax.driver.core.utils.UUIDs;
 import lombok.AllArgsConstructor;

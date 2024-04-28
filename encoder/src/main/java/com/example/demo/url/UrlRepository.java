@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.url;
 
 import org.springframework.data.cassandra.repository.AllowFiltering;
 import org.springframework.data.cassandra.repository.CassandraRepository;

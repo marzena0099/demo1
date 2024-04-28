@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.url;
 
 import lombok.Data;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
